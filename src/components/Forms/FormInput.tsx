@@ -2,7 +2,7 @@
 import { Input } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 interface IInput {
-  name?: string;
+  name: string;
   type?: string;
   size?: "large" | "small";
   value?: string | string[] | undefined
@@ -18,12 +18,12 @@ const FormInput = ({ placeholder, type, name, id, validation, label, size,value 
   const { control} = useFormContext()
   return (
     <>
-
+{ label ? label: null}
       <Controller
         control={control}
-        name="ReactDatepicker"
-        render={({ field: { onChange, onBlur, value, ref } }) => (
-          <Input placeholder="Basic usage" />
+        name={name}
+        render={({field}) => (
+          <Input placeholder={placeholder} type={type} size={size} {...field} value={ value ? value : field.value}/>
         )}
       />
       

@@ -1,11 +1,14 @@
-import Link from 'next/link'
+"use client"
+import { Button, Result } from 'antd'
+
  
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
+    <Result
+    status="404"
+    title="404"
+    subTitle="Sorry, the page you visited does not exist."
+    extra={<Button type="primary">Back Home</Button>}
+  />
   )
 }
