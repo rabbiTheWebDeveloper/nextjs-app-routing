@@ -2,24 +2,24 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 type FormConfig ={
-  defaultValues : Record<string, any>
+  defaultValues? : Record<string, any>
 }
 
 type FormProps ={
-  children: React.ReactNode
+  children ?: React.ReactNode
   submitHandler: SubmitHandler<any>
 } & FormConfig
 
 const Form = ({ children, submitHandler, defaultValues }: FormProps) => {
-  const methods = useForm({
-    defaultValues, // You can pass default values to useForm
-  });
+  const formConfig : FormConfig ={}
+  if(!!defaultValues) formConfig.defaultValues = defaultValues
+  const methods = useForm<FormProps>(formConfig)
+  const { handleSubmit ,reset } = methods;
 
-  const { handleSubmit } = methods; // Destructure handleSubmit from methods
-
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     console.log(data);
-    submitHandler(data); // Call the external submitHandler function
+    submitHandler(data);
+    reset(); 
   }
 
   return (
