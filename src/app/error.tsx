@@ -1,5 +1,4 @@
 'use client' // Error components must be Client Components
- 
 import { Button, Result } from 'antd'
 import { useEffect } from 'react'
  
@@ -11,7 +10,6 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
  
@@ -20,7 +18,9 @@ export default function Error({
     status="500"
     title="500"
     subTitle="Sorry, something went wrong."
-    extra={<Button type="primary">Back Home</Button>}
+    extra={
+    <Button type="primary">Back Home</Button>
+  }
   />
   )
 }
